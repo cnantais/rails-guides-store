@@ -6,7 +6,7 @@ class Email::ConfirmationsController< ApplicationController
     if user&.confirm_email
       flash[:notice] = "Your email has been confirmed."
     else
-      flash[:alert] = "Invalid token"
+      flash[:alert] = "Invalid token."
     end
     redirect_to root_path
   end
