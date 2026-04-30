@@ -8,6 +8,7 @@
       <%= link_to "Account", settings_user_path %>
       <% if Current.user.admin? %>
         <h4>Store Settings</h4>
+        <%= link_to "Products", store_products_path %>
         <%= link_to "Users", store_users_path %>
       <% end %>
     </nav>

@@ -1,5 +1,5 @@
 <%# app/views/products/_form.html.erb %>
-<%= form_with model: product do |form| %>
+<%= form_with model: [ :store, product ] do |form| %>
   <% if form.object.errors.any? %>
     <p class="error"><%= form.object.errors.full_messages.first %></p>
   <% end %>
