@@ -6,6 +6,15 @@ class User < ApplicationRecord
 
   validates :first_name, :last_name, presence: true, on: :create
 
+  generates_token_for :email_confirmation, expires_in: 7.days do
+    unconfirmed_email
+  end
+
+  def confirm_email
+    return false if unconfirmed_email.nil?
+    update(email_address: unconfirmed_email, unconfirmed_email: nil)
+  end
+
   def full_name
     "#{first_name} #{last_name}"
   end
