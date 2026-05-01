@@ -21,4 +21,3 @@ class Email::ConfirmationsControllerTest < ActionDispatch::IntegrationTest
     assert_nil user.unconfirmed_email
   end
 end
-
