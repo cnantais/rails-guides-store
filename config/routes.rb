@@ -43,6 +43,7 @@ Rails.application.routes.draw do
     resources :products
     resources :users
     resources :wishlists
+    resources :subscribers
 
     root to: redirect("/store/products")
   end
