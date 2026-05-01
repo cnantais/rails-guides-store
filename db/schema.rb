@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_04_30_185519) do
+ActiveRecord::Schema[8.1].define(version: 2026_05_01_134101) do
   create_table "action_text_rich_texts", force: :cascade do |t|
     t.text "body"
     t.datetime "created_at", null: false
@@ -54,6 +54,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_04_30_185519) do
     t.integer "inventory_count", default: 0
     t.string "name"
     t.datetime "updated_at", null: false
+    t.integer "wishlists_count", default: 0
   end
 
   create_table "sessions", force: :cascade do |t|
@@ -85,8 +86,30 @@ ActiveRecord::Schema[8.1].define(version: 2026_04_30_185519) do
     t.index ["email_address"], name: "index_users_on_email_address", unique: true
   end
 
+  create_table "wishlist_products", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.integer "product_id", null: false
+    t.datetime "updated_at", null: false
+    t.integer "wishlist_id", null: false
+    t.index ["product_id", "wishlist_id"], name: "index_wishlist_products_on_product_id_and_wishlist_id", unique: true
+    t.index ["product_id"], name: "index_wishlist_products_on_product_id"
+    t.index ["wishlist_id"], name: "index_wishlist_products_on_wishlist_id"
+  end
+
+  create_table "wishlists", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.string "name"
+    t.integer "products_count", default: 0
+    t.datetime "updated_at", null: false
+    t.integer "user_id", null: false
+    t.index ["user_id"], name: "index_wishlists_on_user_id"
+  end
+
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "sessions", "users"
   add_foreign_key "subscribers", "products"
+  add_foreign_key "wishlist_products", "products"
+  add_foreign_key "wishlist_products", "wishlists"
+  add_foreign_key "wishlists", "users"
 end

@@ -1,3 +1,6 @@
 tshirt:
   name: T-Shirt
   inventory_count: 15
+jeans:
+  name: Blue Jeans
+  inventory_count: 5
