@@ -5,5 +5,10 @@ one:
   wishlist: one
 
 two:
-  product: jeans
+  product: tshirt
   wishlist: two
+
+three:
+  product: shoes
+  wishlist: two
+
